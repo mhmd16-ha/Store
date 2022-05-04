@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Store.Data.Interfaces;
 using Store.Models;
+using Store.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,27 +13,22 @@ namespace Store.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _model;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductRepository product)
         {
-            _logger = logger;
+            _model = product;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = new HomeViewModel
+            {
+                PreferredProduct = _model.PreferedProducts,
+            };
+            return View(model);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+      
     }
 }

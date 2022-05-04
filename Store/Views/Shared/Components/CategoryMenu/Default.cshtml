@@ -1,0 +1,18 @@
+﻿
+<div class="dropdown show">
+  <a class="btn btn-btn-primary dropdown-toggle"asp-controller="Product"
+       asp-action="Index" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Product
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        @foreach (var category in Model)
+        {
+                <a  class="dropdown-item" asp-controller="Product" asp-action="Index"
+                   asp-route-category="@category.CategoryName">@category.CategoryName</a>
+           
+        }
+
+     <a  class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-category="">View all Products</a>
+  </div>
+</div>

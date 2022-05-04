@@ -1,0 +1,21 @@
+﻿@model ProductModelView
+
+@{
+    ViewData["Title"] = "product";
+}
+
+<div class="text-center">
+    <div>
+        <h2>All Product are shown here</h2>
+    </div>
+
+
+    <h2>@Model.CurrentCategory</h2>
+</div>
+
+<div class="row">
+@foreach (var item in Model.Products)
+{
+    <partial name="_ProductSummary" model="item" />
+}
+</div>
