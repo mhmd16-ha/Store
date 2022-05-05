@@ -13,7 +13,11 @@ namespace Store.Data
         public DbSet<Product> products { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<ShoppingCartItems> ShoppingCartItems { get; set; }
-        
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
+
+
 
     }
 }
