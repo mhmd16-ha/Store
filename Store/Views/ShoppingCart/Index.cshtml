@@ -1,0 +1,68 @@
+﻿@model ShoppingCartViewModel
+
+@{ 
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container">
+
+    <div class="row checkoutForm">
+        <h2>Your shopping cart</h2>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Selected amount</th>
+                    <th>Drink</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    <tr>
+                        <td class="text-center">@line.Amount</td>
+                        <td class="text-left">@line.Product.ProductName</td>
+                        <td class="text-right">@line.Product.Price.ToString("c")</td>
+                        <td class="text-right">
+                            @((line.Amount * line.Product.Price).ToString("c"))
+                        </td>
+                        <td class="text-center"><a style="text-decoration:none;color:red ;" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-productId="@line.Product.ProductId">Remove</a></td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model.ShoppingCartTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-center">
+            <div class="btn-group ">
+                <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+                <div class="dropdown show">
+                 <a class="btn btn-btn-primary dropdown-toggle"asp-controller="Product"
+                asp-action="Index" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Product
+                  </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+               @foreach (var category in Model.category)
+               {
+                <a  class="dropdown-item" asp-controller="Product" asp-action="Index"
+                   asp-route-category="@category.CategoryName">@category.CategoryName</a>    
+                 }
+
+                    <a  class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-category="">View all Products</a>
+             </div>
+             </div>
+            </div>
+        </div>
+    </div>
+</div>

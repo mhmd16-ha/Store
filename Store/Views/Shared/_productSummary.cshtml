@@ -1,6 +1,4 @@
-﻿@using Store.Data.Models
-@model Product
-  
+﻿
 <div class="col-sm-4 col-lg-4 col-md-4">
     <div class="thumbnail">
         <img src="~/Images/@Model.ImageThumbnailUrl" alt="" style="min-height:300px;width:95%;" class="img-responsive" />
@@ -17,7 +15,7 @@
             <a class="btn btn-success" id="cartButton"
                asp-controller="ShoppingCart"
                asp-action="AddToShoppingCart"
-               asp-route-drinkId="@Model.ProductId">
+               asp-route-productId="@Model.ProductId">
                 Add To Cart
             </a>
         </p>

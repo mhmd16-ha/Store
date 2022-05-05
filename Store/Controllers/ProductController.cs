@@ -20,7 +20,7 @@ namespace Store.Controllers
         }
         public ViewResult Index(string category)
         {
-            string _category=category;
+           
             IEnumerable<Product> products;
             string currentCategory = string.Empty;
             if (string.IsNullOrEmpty(category))
@@ -30,11 +30,11 @@ namespace Store.Controllers
             }
             else
             {
-                if (string.Equals("ملابس", _category, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals("ملابس", category, StringComparison.OrdinalIgnoreCase))
                 {
                     products=_product.Products.Where(p => p.Category.CategoryName.Equals("ملابس"));
                 }
-                else if(string.Equals("ترفيه", _category, StringComparison.OrdinalIgnoreCase))
+                else if(string.Equals("ترفيه", category, StringComparison.OrdinalIgnoreCase))
                     {
                     products = _product.Products.Where(p => p.Category.CategoryName.Equals("ترفيه"));
 
@@ -45,7 +45,7 @@ namespace Store.Controllers
 
                 }
 
-                currentCategory = _category;
+                currentCategory = category;
             }
             var model = new ProductModelView
             {
