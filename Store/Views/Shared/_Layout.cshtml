@@ -28,8 +28,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact Us</a>
                         </li>
 
-                        @await Component.InvokeAsync("ShoppingCartSummary")    
+                        @await Component.InvokeAsync("ShoppingCartSummary")  
+                      
                     </ul>
+                        <ul class="text-left">
+                      @await Html.PartialAsync("_LoginPartial")
+                        </ul>
                 </div>
             </div>
         </nav>

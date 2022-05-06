@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Store.Data.Interfaces;
 using Store.Data.Models;
 
@@ -14,11 +15,14 @@ namespace Store.Controllers
             this.orderRepository = orderRepository;
             this.shoppingCart = shoppingCart;
         }
+        [Authorize]
+
         public IActionResult Checkout()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult Checkout(Order order)
         {
             var items = shoppingCart.GetShoppingCartItems();
@@ -38,6 +42,7 @@ namespace Store.Controllers
 
             return View(order);
         }
+        
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Thanks for your order!";
